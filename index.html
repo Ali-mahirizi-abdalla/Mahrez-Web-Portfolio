@@ -314,10 +314,10 @@
 
         .compact-logo { display: flex; align-items: center; gap: 0.8rem; }
 
-        /* Hacker Profile Styles */
+        /* Hacker Profile Styles (Updated) */
         @keyframes radarPing {
             0% { transform: scale(1); opacity: 0.8; border-width: 3px; }
-            100% { transform: scale(1.3); opacity: 0; border-width: 1px; }
+            100% { transform: scale(1.35); opacity: 0; border-width: 1px; }
         }
         
         @keyframes scanMove {
@@ -328,6 +328,7 @@
         .glitch-name-hacker {
             position: relative;
             animation: glitchTextHacker 3s infinite;
+            cursor: pointer;
         }
         
         .hacker-profile:hover .glitch-name-hacker {
@@ -342,23 +343,31 @@
             98% { text-shadow: -1px 0 #9d00ff, 1px 0 #ff003c; transform: skew(-2deg); }
             99% { text-shadow: 1px 0 #9d00ff, -1px 0 #ff003c; transform: skew(0deg); }
         }
+
+        @keyframes glitchIntense {
+            0% { text-shadow: -2px 0 red, 2px 0 blue; }
+            25% { text-shadow: 2px 0 red, -2px 0 blue; }
+            50% { text-shadow: -2px 0 blue, 2px 0 red; }
+            75% { text-shadow: 2px 0 blue, -2px 0 red; }
+            100% { text-shadow: 0 0 5px var(--primary); }
+        }
         
         .binary-ring-profile {
             animation: rotateRing 20s linear infinite;
         }
         
-        .image-circle-profile:hover .glitch-overlay-profile {
-            background: repeating-linear-gradient(0deg, 
-                rgba(0, 255, 65, 0.2) 0px, 
-                rgba(0, 255, 65, 0.2) 2px, 
-                transparent 2px, 
-                transparent 4px);
-            animation: glitchFlash 0.2s infinite;
-        }
-        
-        @keyframes glitchFlash {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
+        .binary-ring-profile .bit1 { top: -5px; left: 50%; transform: translateX(-50%); }
+        .binary-ring-profile .bit2 { top: 20%; right: -8px; }
+        .binary-ring-profile .bit3 { bottom: -5px; left: 50%; transform: translateX(-50%); }
+        .binary-ring-profile .bit4 { top: 20%; left: -8px; }
+        .binary-ring-profile .bit5 { top: 50%; right: -12px; transform: translateY(-50%); }
+        .binary-ring-profile .bit6 { bottom: 20%; right: -8px; }
+        .binary-ring-profile .bit7 { bottom: 20%; left: -8px; }
+        .binary-ring-profile .bit8 { top: 50%; left: -12px; transform: translateY(-50%); }
+
+        .image-circle-profile:hover {
+            box-shadow: 0 0 35px var(--primary);
+            transition: all 0.3s;
         }
 
         /* Terminal Window */
@@ -712,34 +721,39 @@
                         <div class="pulse-ring" style="position: absolute; top: -8px; left: -8px; right: -8px; bottom: -8px; border-radius: 50%; border: 2px solid var(--primary); opacity: 0; animation: radarPing 2s infinite;"></div>
                         <div class="pulse-ring-delayed" style="position: absolute; top: -8px; left: -8px; right: -8px; bottom: -8px; border-radius: 50%; border: 2px solid var(--primary); opacity: 0; animation: radarPing 2s infinite 1s;"></div>
                         
-                        <div class="image-circle-profile" style="width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--primary); overflow: hidden; box-shadow: 0 0 20px var(--primary-glow); position: relative; background: #000;">
-                            <img id="profile-img-hacker" src="src/assets/images/ali.png" alt="Alimahirizi Abdalla" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) contrast(120%); transform: scale(2.2); object-position: center 12%;">
+                        <div class="image-circle-profile" style="width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--primary); overflow: hidden; box-shadow: 0 0 20px var(--primary-glow); position: relative; background: #000; display: flex; align-items: center; justify-content: center;">
+                            <img id="profile-img-hacker" src="https://i.postimg.cc/BvNJdt6n/ali-png.jpg" alt="Alimahirizi Abdalla" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) contrast(120%); transform: scale(2.4); object-position: center 12%;" onerror="this.onerror=null; this.src='src/assets/images/ali.png'">
                             <div class="scanline-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(transparent 50%, rgba(0,255,65,0.05) 50%); background-size: 100% 4px; pointer-events: none; animation: scanMove 8s linear infinite;"></div>
-                            <div class="glitch-overlay-profile" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0); pointer-events: none; transition: all 0.3s;"></div>
                         </div>
                         
-                        <div class="binary-ring-profile" style="position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; border-radius: 50%; pointer-events: none;">
-                            <div style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.6rem; top: 0; left: 50%; transform: translateX(-50%);">0</div>
-                            <div style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.6rem; top: 50%; right: 0; transform: translateY(-50%);">1</div>
-                            <div style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.6rem; bottom: 0; left: 50%; transform: translateX(-50%);">1</div>
-                            <div style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.6rem; top: 50%; left: 0; transform: translateY(-50%);">0</div>
+                        <div class="binary-ring-profile" style="position: absolute; top: -18px; left: -18px; right: -18px; bottom: -18px; border-radius: 50%; pointer-events: none;">
+                            <div class="bit1" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">0</div>
+                            <div class="bit2" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">1</div>
+                            <div class="bit3" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">1</div>
+                            <div class="bit4" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">0</div>
+                            <div class="bit5" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">1</div>
+                            <div class="bit6" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">0</div>
+                            <div class="bit7" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">0</div>
+                            <div class="bit8" style="position: absolute; color: var(--primary); font-family: var(--font-mono); font-size: 0.7rem;">1</div>
                         </div>
                     </div>
                     
                     <div style="margin-top: 1.5rem; text-align: center;">
-                        <h3 class="glitch-name-hacker" style="color: var(--primary); font-family: var(--font-mono); font-size: 1.2rem; letter-spacing: 2px; margin: 0;">ALIMAHIRIZI</h3>
+                        <h3 class="glitch-name-hacker" data-text="ALIMAHIRIZI" style="color: var(--primary); font-family: var(--font-mono); font-size: 1.5rem; letter-spacing: 3px; margin: 0; text-shadow: 0 0 5px var(--primary);">
+                            ALIMAHIRIZI
+                        </h3>
                     </div>
                     
                     <div class="root-terminal" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 0.5rem;">
-                        <span style="color: var(--primary); font-family: var(--font-mono); font-size: 0.75rem;">$</span>
-                        <span id="typing-root-profile" style="color: var(--secondary); font-family: var(--font-mono); font-size: 0.75rem;"></span>
-                        <span id="cursor-root-profile" style="display: inline-block; width: 6px; height: 12px; background: var(--primary); animation: blink 1s step-end infinite;"></span>
+                        <span style="color: var(--primary); font-family: var(--font-mono); font-size: 0.85rem;">$</span>
+                        <span id="typing-root-profile" style="color: var(--secondary); font-family: var(--font-mono); font-size: 0.85rem;"></span>
+                        <span id="cursor-root-profile" style="display: inline-block; width: 8px; height: 14px; background: var(--primary); animation: blink 1s step-end infinite;"></span>
                     </div>
                     
-                    <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; width: 100%;">
-                        <span style="background: rgba(0, 255, 65, 0.05); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--primary); text-align: center;">● ACTIVE</span>
-                        <span style="background: rgba(0, 255, 65, 0.05); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--primary); text-align: center;">🔐 ETHICAL HACKER</span>
-                        <span style="background: rgba(0, 255, 65, 0.05); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--primary); text-align: center;">⚡ FULL-STACK</span>
+                    <div style="margin-top: 1rem; display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center;">
+                        <span style="background: rgba(0, 255, 65, 0.1); border: 1px solid var(--primary); padding: 3px 10px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--primary);">● ACTIVE</span>
+                        <span style="background: rgba(0, 255, 65, 0.1); border: 1px solid var(--primary); padding: 3px 10px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--primary);">🔐 ETHICAL HACKER</span>
+                        <span style="background: rgba(0, 255, 65, 0.1); border: 1px solid var(--primary); padding: 3px 10px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--primary);">⚡ FULL-STACK</span>
                     </div>
                 </div>
 
@@ -1402,6 +1416,12 @@
                 setTimeout(() => {
                     img.style.filter = "grayscale(20%) contrast(120%)";
                 }, 100);
+            }
+            // Add subtle pulse on interval
+            const circle = document.querySelector('.image-circle-profile');
+            if (circle) {
+                circle.style.transform = "scale(1.02)";
+                setTimeout(() => circle.style.transform = "scale(1)", 100);
             }
         }, 8000);
 
