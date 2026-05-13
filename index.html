@@ -602,25 +602,42 @@
         <section class="hero" style="height: auto; padding-top: 8rem; min-height: 90vh; display: flex; align-items: center;">
             <div class="hero-terminal" style="font-family: var(--font-mono); width: 100%;">
                 
-                <div id="initialization-block" style="transition: opacity 1s ease-out, transform 1s ease-out;">
-                    <!-- ASCII Art (Restored) -->
-                    <pre style="color: var(--primary); font-size: clamp(0.4rem, 1vw, 0.7rem); line-height: 1.2; text-align: center; text-shadow: 0 0 10px var(--primary-glow); margin-bottom: 2rem;">
- |  _ \| ____| | | | ____|   |  _ \| ____|  _ \ 
- | | | |  _| | | | |  _| | | | | | | |_) |  _| | |_) |
- | |_| | |___| |_| | |___| | | |_| |  __/| |___|  _ < 
- |____/|_____|\___/|_____|_____\___/|_|   |_____|_| \_\
-                    </pre>
-                    
-                    <!-- Boot Messages -->
-                    <div id="boot-messages" style="color: var(--primary); margin: 1.5rem 0; text-align: center; font-size: 0.9rem;">
-                        <div>[SYSTEM] Initializing Alimahirizi security kernel...</div>
-                        <div>[BOOT] Loading ethical hacking modules [OK]</div>
-                        <div>[INIT] Mounting full-stack frameworks [OK]</div>
-                        <div>[LOAD] Django, React, Vue, PostgreSQL [OK]</div>
-                        <div>[EXEC] Running penetration test simulation [OK]</div>
-                        <div>[INIT] Deploying secure portfolio interface [OK]</div>
-                        <div id="last-boot">[DONE] System ready. No vulnerabilities found.</div>
-                        <span id="hero-cursor" class="cursor" style="height: 16px;">_</span>
+                <div id="initialization-block" style="transition: opacity 1s ease-out, transform 1s ease-out; margin-bottom: 3rem;">
+                    <!-- FULL ASCII ART -->
+                    <div class="hero-section" style="margin: 1rem auto; font-family: var(--font-mono); width: 100%; max-width: 900px;">
+                        <pre style="color: var(--primary); font-size: clamp(0.3rem, 1vw, 0.6rem); line-height: 1.1; text-align: center; font-family: var(--font-mono); white-space: pre; overflow-x: auto; text-shadow: 0 0 10px var(--primary-glow);">
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║    █████╗ ██╗     ██╗███╗   ███╗ █████╗ ██╗  ██╗██╗██████╗ ██╗███████╗██╗     ║
+║   ██╔══██╗██║     ██║████╗ ████║██╔══██╗██║  ██║██║██╔══██╗██║╚══███╔╝██║     ║
+║   ███████║██║     ██║██╔████╔██║███████║███████║██║██████╔╝██║  ███╔╝ ██║     ║
+║   ██╔══██║██║     ██║██║╚██╔╝██║██╔══██║██╔══██║██║██╔══██╗██║ ███╔╝  ██║     ║
+║   ██║  ██║███████╗██║██║ ╚═╝ ██║██║  ██║██║  ██║██║██║  ██║██║███████╗███████╗║
+║   ╚═╝  ╚═╝╚══════╝╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+                        </pre>
+                        
+                        <!-- Smaller MAHREZ ASCII -->
+                        <pre style="color: var(--primary); font-size: clamp(0.4rem, 1.2vw, 0.7rem); line-height: 1.2; text-align: center; font-family: var(--font-mono); margin-top: -0.5rem; opacity: 0.8;">
+    ███    ███  █████  ██   ██ ██████  ███████ ███████ 
+    ████  ████ ██   ██ ██   ██ ██   ██ ██      ██      
+    ██ ████ ██ ███████ ███████ ██████  █████   █████   
+    ██  ██  ██ ██   ██ ██   ██ ██   ██ ██      ██      
+    ██      ██ ██   ██ ██   ██ ██   ██ ███████ ███████ 
+                        </pre>
+                        
+                        <!-- Boot Messages -->
+                        <div id="boot-messages-detailed" style="color: var(--primary); margin: 2rem auto; text-align: left; max-width: 600px; background: rgba(0, 0, 0, 0.7); padding: 1.5rem; border-left: 3px solid var(--primary); font-family: var(--font-mono); font-size: 0.85rem; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                            <div id="boot-line1" style="display: none;">[SYSTEM] Initializing Alimahirizi security kernel...</div>
+                            <div id="boot-line2" style="display: none;">[BOOT] Loading ethical hacking modules <span id="boot-status1"></span></div>
+                            <div id="boot-line3" style="display: none;">[INIT] Mounting full-stack frameworks <span id="boot-status2"></span></div>
+                            <div id="boot-line4" style="display: none;">[LOAD] Django, React, Vue, PostgreSQL <span id="boot-status3"></span></div>
+                            <div id="boot-line5" style="display: none;">[EXEC] Running penetration test simulation <span id="boot-status4"></span></div>
+                            <div id="boot-line6" style="display: none;">[INIT] Deploying secure portfolio interface <span id="boot-status5"></span></div>
+                            <div id="boot-line7" style="display: none;">[DONE] System ready. No vulnerabilities found.</div>
+                            <span id="boot-cursor-detailed" style="display: inline-block; width: 8px; height: 14px; background: var(--primary); animation: blink 1s step-end infinite;"></span>
+                        </div>
                     </div>
                 </div>
                 
@@ -1272,13 +1289,60 @@
         const typingCursor = document.getElementById("typing-cursor");
         let roleIndex = 0;
         
+        // Animated detailed boot sequence
+        const bootLinesDetailed = [
+            { element: "boot-line1", text: "[SYSTEM] Initializing Alimahirizi security kernel...", delay: 0, hasStatus: false },
+            { element: "boot-line2", text: "[BOOT] Loading ethical hacking modules", delay: 800, hasStatus: true, statusId: "boot-status1", statusText: "[OK]" },
+            { element: "boot-line3", text: "[INIT] Mounting full-stack frameworks", delay: 1600, hasStatus: true, statusId: "boot-status2", statusText: "[OK]" },
+            { element: "boot-line4", text: "[LOAD] Django, React, Vue, PostgreSQL", delay: 2400, hasStatus: true, statusId: "boot-status3", statusText: "[OK]" },
+            { element: "boot-line5", text: "[EXEC] Running penetration test simulation", delay: 3200, hasStatus: true, statusId: "boot-status4", statusText: "[OK]" },
+            { element: "boot-line6", text: "[INIT] Deploying secure portfolio interface", delay: 4200, hasStatus: true, statusId: "boot-status5", statusText: "[OK]" },
+            { element: "boot-line7", text: "[DONE] System ready. No vulnerabilities found.", delay: 5000, hasStatus: false }
+        ];
+        
+        let currentBootLine = 0;
+        
+        function showNextBootLine() {
+            if (currentBootLine < bootLinesDetailed.length) {
+                const line = bootLinesDetailed[currentBootLine];
+                const element = document.getElementById(line.element);
+                
+                if (element) {
+                    element.style.display = "block";
+                    
+                    if (line.hasStatus && line.statusId) {
+                        const statusSpan = document.getElementById(line.statusId);
+                        if (statusSpan) {
+                            statusSpan.style.color = "var(--secondary)";
+                            statusSpan.style.marginLeft = "10px";
+                            statusSpan.innerHTML = "[...]";
+                            
+                            setTimeout(() => {
+                                statusSpan.style.color = "var(--primary)";
+                                statusSpan.innerHTML = line.statusText;
+                                statusSpan.style.animation = "glitchFlash 0.2s ease";
+                            }, 400);
+                        }
+                    }
+                }
+                currentBootLine++;
+                setTimeout(showNextBootLine, 600);
+            } else {
+                const cursor = document.getElementById("boot-cursor-detailed");
+                if (cursor) cursor.style.display = "none";
+                
+                // Trigger the main role typing after boot
+                setTimeout(typeRole, 1000);
+            }
+        }
+
         function typeRole() {
             if (roleElement && roleIndex < roleText.length) {
                 // Hide initialization block on start of typing
                 const initBlock = document.getElementById('initialization-block');
                 if (initBlock && roleIndex === 0) {
                     initBlock.style.opacity = '0';
-                    initBlock.style.transform = 'translateY(-20px)';
+                    initBlock.style.transform = 'translateY(-30px)';
                     setTimeout(() => initBlock.style.display = 'none', 1000);
                 }
 
@@ -1290,8 +1354,10 @@
             }
         }
 
-        // Start typing after boot sequence
-        setTimeout(typeRole, 3500);
+        // Start boot sequence when page is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(showNextBootLine, 1000);
+        });
 
         // Hacker Mode Toggle (Sudo Command)
         const sudoToggle = document.getElementById('sudoToggle');
