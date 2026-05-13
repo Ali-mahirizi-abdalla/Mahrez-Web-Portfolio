@@ -523,7 +523,12 @@
         .checklist { margin-top: 4rem; background: rgba(0, 0, 0, 0.3); border-radius: 12px; padding: 2rem; border: 1px solid var(--border); }
         .checklist h3 { margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
         .checklist-item { display: flex; gap: 1rem; margin-bottom: 0.8rem; font-family: var(--font-mono); font-size: 0.9rem; padding: 0.5rem; border-radius: 4px; transition: 0.2s; }
-        .checklist-item:hover { background: rgba(255, 255, 255, 0.03); }
+        .cyber-button:hover {
+            background: var(--primary) !important;
+            color: #000 !important;
+            box-shadow: 0 0 20px var(--primary-glow);
+            transform: scale(1.05);
+        }
         .check-status { color: var(--primary); }
         .check-pending { color: var(--secondary); animation: blink 1s infinite; }
 
@@ -830,6 +835,15 @@
                         <span style="background: rgba(0, 255, 65, 0.1); border: 1px solid var(--primary); padding: 3px 10px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--primary);">● ACTIVE</span>
                         <span style="background: rgba(0, 255, 65, 0.1); border: 1px solid var(--primary); padding: 3px 10px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--primary);">🔐 ETHICAL HACKER</span>
                         <span style="background: rgba(0, 255, 65, 0.1); border: 1px solid var(--primary); padding: 3px 10px; border-radius: 20px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--primary);">⚡ FULL-STACK</span>
+                    </div>
+
+                    <!-- Download CV Button -->
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <a href="src/assets/docs/Alimahirizi_Abdalla_CV.pdf" download="Alimahirizi_Abdalla_CV.pdf">
+                            <button class="cyber-button" style="background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 10px 24px; font-family: var(--font-mono); font-size: 0.8rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-weight: bold; width: 100%;">
+                                ⚡ [ DOWNLOAD CV ] ⚡
+                            </button>
+                        </a>
                     </div>
                 </div>
 
