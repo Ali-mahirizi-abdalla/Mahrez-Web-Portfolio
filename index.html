@@ -648,19 +648,49 @@
 
         @media (max-width: 480px) {
             .hero-section pre {
-                font-size: 0.25rem !important;
+                font-size: 0.22rem !important;
+                letter-spacing: -1px;
             }
             .hero-terminal h1 {
-                font-size: 1.8rem !important;
+                font-size: 1.6rem !important;
             }
             #boot-messages-detailed {
-                font-size: 0.75rem;
-                padding: 1rem;
+                font-size: 0.7rem;
+                padding: 0.8rem;
             }
             .terminal-body {
-                font-size: 0.85rem;
-                padding: 1rem;
+                font-size: 0.8rem;
+                padding: 0.8rem;
             }
+            .hacker-toggle-container {
+                right: 5px;
+                top: 15px;
+                scale: 0.8;
+            }
+            .compact-logo div:last-child {
+                display: none !important; /* Hide subtitle on tiny screens */
+            }
+            section {
+                padding: 3rem 1rem !important;
+            }
+            .glass-card {
+                padding: 1.5rem !important;
+            }
+            .timeline-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Prevent horizontal scroll */
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        
+        * {
+            box-sizing: border-box;
+            word-wrap: break-word;
         }
         .check-status { color: var(--primary); }
         .check-pending { color: var(--secondary); animation: blink 1s infinite; }
