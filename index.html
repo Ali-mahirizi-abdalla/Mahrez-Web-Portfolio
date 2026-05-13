@@ -73,6 +73,73 @@
             opacity: 0.1;
         }
 
+        .hacker-toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,0,0,0.85);
+            padding: 8px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--primary);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transition: border-color 0.3s;
+        }
+        
+        .hacker-toggle {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+        }
+        
+        .hacker-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #0a0a0a;
+            border: 1px solid var(--primary);
+            transition: 0.3s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 4px;
+            bottom: 3px;
+            background-color: var(--primary);
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            border-color: #ff003c;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(20px);
+            background-color: #ff003c;
+            box-shadow: 0 0 10px #ff003c;
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
@@ -557,6 +624,15 @@
 <body>
     <canvas id="matrixCanvas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; opacity: 0.1; pointer-events: none;"></canvas>
 
+    <!-- Hacker Mode Toggle -->
+    <div class="hacker-toggle-container">
+        <span style="color: #666;">SECURE</span>
+        <label class="hacker-toggle">
+            <input type="checkbox" id="hackerModeToggle">
+            <span class="toggle-slider"></span>
+        </label>
+        <span style="color: var(--primary);">HACKER</span>
+    </div>
 
     <!-- [SYSTEM] Boot Screen -->
     <div id="bootScreen">
@@ -1373,21 +1449,37 @@
             setTimeout(showNextBootLine, 1000);
         });
 
-        // Hacker Mode Toggle (Sudo Command)
+        // Hacker Mode Toggle Logic
+        const modeToggle = document.getElementById('hackerModeToggle');
+        if (modeToggle) {
+            modeToggle.addEventListener('change', () => {
+                document.body.classList.toggle('hacker-mode');
+                
+                // Add terminal feedback if boot messages are visible
+                const bootMessages = document.getElementById('boot-messages-detailed');
+                if (bootMessages && bootMessages.style.display !== 'none') {
+                    const newLine = document.createElement('div');
+                    newLine.style.color = document.body.classList.contains('hacker-mode') ? '#ff003c' : 'var(--primary)';
+                    newLine.style.fontSize = '0.8rem';
+                    newLine.style.marginTop = '0.5rem';
+                    newLine.innerText = document.body.classList.contains('hacker-mode') ? "[ ALERT: HACKER MODE OVERRIDE ACTIVE ]" : "[ SYSTEM: DEFAULT SECURITY RESTORED ]";
+                    bootMessages.appendChild(newLine);
+                }
+            });
+        }
+
+        // Hacker Mode Toggle (Sudo Command) - Sync with slider
         const sudoToggle = document.getElementById('sudoToggle');
         if (sudoToggle) {
             sudoToggle.addEventListener('click', (e) => {
                 e.preventDefault();
-                document.body.classList.toggle('hacker-mode');
-                
-                // Add terminal feedback
-                const newLine = document.createElement('div');
-                newLine.style.color = document.body.classList.contains('hacker-mode') ? '#ff003c' : 'var(--primary)';
-                newLine.style.textAlign = 'center';
-                newLine.style.fontSize = '0.8rem';
-                newLine.style.marginTop = '0.5rem';
-                newLine.innerText = document.body.classList.contains('hacker-mode') ? "[ ALERT: HACKER MODE ACTIVE ]" : "[ SYSTEM: DEFAULT SECURITY LOADED ]";
-                document.getElementById('boot-messages').appendChild(newLine);
+                if (modeToggle) {
+                    modeToggle.checked = !modeToggle.checked;
+                    // Manually trigger the change event
+                    modeToggle.dispatchEvent(new Event('change'));
+                } else {
+                    document.body.classList.toggle('hacker-mode');
+                }
             });
         }
 
